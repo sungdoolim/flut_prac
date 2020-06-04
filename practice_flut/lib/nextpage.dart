@@ -1,28 +1,21 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+
+import 'main.dart';
 class nextpage extends StatefulWidget {
+   num count;
+   MyHomePage m;
+  nextpage(this.count);
   @override
-  _nextpageState createState() => _nextpageState();
+  nextpageState createState() => nextpageState();
 }
 
-class _nextpageState extends State<nextpage> {
+class nextpageState extends State<nextpage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("hi")),
-      body:Center(
-        child:Column(
-          children: <Widget>[
-            Text("column test"),
-            Icon(Icons.add),
-            RaisedButton(child:Icon(Icons.delete),
-            onPressed: (){
-              print("rbt clic");
-            },)
-          ],
-        )
-
-
-      )
     );
   }
 }

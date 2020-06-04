@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practiceflut/secondpage.dart';
 
 import 'nextpage.dart';
 
@@ -13,15 +14,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
-
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage('Flutter Demo Home Page'),
     );
   }
 }
+
 class MyHomePage extends StatefulWidget {
   var title;
 
@@ -34,40 +34,56 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
-        floatingActionButton: FloatingActionButton(child:Icon(Icons.delete),
-        onPressed: (){
-          print("float bt");
-          Navigator.push(context,MaterialPageRoute(builder:(context){
-return nextpage();
-          }));
+    return Scaffold(
+
+        appBar: AppBar(title: Text("appbar"),),
+
+        drawer: Drawer(
+
+          child: ListView(
+            children: <Widget>[
+              DrawerHeader(child: Text("header_drawer")),
+              ListTile(
+                title: Text("1st"),
+                onTap: () {
+                  String msg="1st";
+                  print("1st");
+                  Navigator.push(context,MaterialPageRoute(builder:(context){return secondpage(msg: msg);}));
+                },
+              ),
+              ListTile(
+                title: Text("2nd"),
+                onTap: () {
+                  print("2nd");
+                },
+              ),
+            ],
+          ),
 
 
-      },),
-          appBar: AppBar(title:Text("prac_flut")),
-          body:Center(
-              child:Column(
-              children:<Widget>[
-              Text("column prac"),
-            Text("column practice"),
-                RaisedButton(child:Text("bt1"),
-                onPressed: (){print("bt1 clic");},),
-                RaisedButton(
-                child:Icon(Icons.add),
-                onPressed: (){print("bt2 clic");},)
+        ),
+        body: Builder(
+            builder: (context) {
+              return Column(children: <Widget>[RaisedButton(
+                child: Text("1st toast"), onPressed: () {
+                var snac = SnackBar(content: Text("1st!!!")
+                  ,
+                  action: SnackBarAction(label: "cancel", onPressed: () {
+                    print("cancel!!");
+                  },),);
+                Scaffold.of(context).showSnackBar((snac));
+              },), RaisedButton(child: Text("2nd"), onPressed: () {
+                var snac = SnackBar(content: Text("2nd!!!"),
+                  action: SnackBarAction(label: "cancel", onPressed: () {
+                    print("cancel!!");
+                  },),);
+                Scaffold.of(context).showSnackBar((snac));
+              },)
+              ],);
+            }
 
+        )
 
-          ]
-          )
-          )
-
-
-
-
-
-
-
-      );
+    );
   }
 }
