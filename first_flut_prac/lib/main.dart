@@ -1,9 +1,12 @@
 import 'package:firstflutprac/dbspring.dart';
+import 'package:firstflutprac/sqflite.dart';
 import 'package:firstflutprac/textsubmit.dart';
 import 'package:firstflutprac/valid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 import 'animationcontainer.dart';
 import 'cupertino_page.dart';
 
@@ -15,6 +18,10 @@ void main() {
   a.add(b);
 
   print(a[2] + a[1]);
+
+
+
+
 
   runApp(MyApp());
 }
@@ -74,6 +81,14 @@ class _firstClassState extends State<firstClass> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
+                  child:Text("sqflite"),
+                  onPressed: (){
+                    Navigator.push(context,MaterialPageRoute(builder: (context){
+
+                      return sqflite();}));
+                  },
+                ),
+                RaisedButton(
                   child:Text("dbspring"),
                   onPressed: (){
                     Navigator.push(
@@ -116,7 +131,7 @@ class _firstClassState extends State<firstClass> {
                       action: SnackBarAction(
                         label: "cancel",
                         onPressed: () {
-                          print("취소");
+                        //  print("취소");
                         },
                       ),
                     );
