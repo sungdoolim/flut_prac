@@ -5,7 +5,7 @@ import 'main.dart';
 class personality extends StatefulWidget {
   String desc;
   int count;
-  int _c=0;
+
   personality(this.desc,this.count);
 
   @override
@@ -13,7 +13,7 @@ class personality extends StatefulWidget {
 }
 
 class _personalityState extends State<personality> {
-  int _index=0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,13 @@ class _personalityState extends State<personality> {
                         "천천히 다시 보는 식으로 이해하지 못한 부분을 이해하며, 업무를 보완하며 스스로 피드백을 하는 것 입니다.",1);
                     break;
                     case 1:return personality("이 짧기에 스트레스와 피로는 덜 쌓이면서 , 업무를 확실히 이해 할 수 있으며, 업무 처리에 있어 빠른 진행 속도를 보이게 되었습니다.",2);
-                    default: return MyApp();
+                    case -1:return personality("집요합니다. 쉽게 상처를 받습니다. 신중해서 쉽게 결정을 못할 때가 종종 있습니다.",-2);
+                    default:
+                    if(widget.count<0){
+                      return  MyHomePage(imgdir:"images/babyele.JPG",desc:"유연하면서도 명확히!",index:1);
+                    }else{
+                      return  MyHomePage();
+                    }
                   }
 
                 }));

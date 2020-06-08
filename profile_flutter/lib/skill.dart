@@ -27,7 +27,14 @@ class _skillState extends State<skill> {
                         "나아가서 java-spring 프레임 워크를 사용할 줄 알기에 mvc패턴에 대해 이해를 하고 있고 구현할 수 있습니다.",1);
                     break;
                     case 1:return skill("개인적으로 공부한 내용을 github에 저장하여 관리해본 경험이 있기에 github를 통한 팀 협업이 가능합니다.",2);
-                    default: return MyApp();
+                    case -1:return skill("교직이수를 하고 저 스스로 심리에 대한 공부를 하고 있기 때문에, 상대방이 고민을 털어놓을 때나 이야기를 할 때 상대가 어떤 감정을 느끼고 있는지, "
+                        "숨겨진 의도가 있는지 등을 캐치하고 반응하면서 진심으로 경청할 수 있습니다.",-2);
+
+                    default:    if(widget.count<0){
+                      return  MyHomePage(imgdir:"images/babyele.JPG",desc:"유연하면서도 명확히!",index:1);
+                    }else{
+                      return  MyHomePage();
+                    }
                   }
 
                 }));

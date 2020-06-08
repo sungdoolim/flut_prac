@@ -28,7 +28,12 @@ class _growingState extends State<growing> {
 
                     case 2:return growing("같은 시기에 부모님의 말씀도 있었습니다. 적성에 맞는 것을 찾는 게 아니라 하는 일을 적성에 맞게 하는 것이라고 하셨습니다.",3);
                     case 3: return growing("이러한 경험이 있기에 새로운 일을 하는데 있어 두려움이 없으며, 모든 일을 제 전공인 것 처럼 잘 처리 할 수 있습니다.",4);
-                    default: return MyApp();
+                    case-1:return growing("2학년 2학기에 교직이수에 합격 후 1년 휴학을 하며 휴식기를 가졌습니다.현재 4학년 재학 중입니다",-2);
+                    default:    if(widget.count<0){
+                      return  MyHomePage(imgdir:"images/babyele.JPG",desc:"유연하면서도 명확히!",index:1);
+                    }else{
+                      return  MyHomePage();
+                    }
                   }
 
                 }));

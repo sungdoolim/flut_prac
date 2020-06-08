@@ -25,7 +25,12 @@ class _subjectState extends State<subject> {
                         " jsp와 JAVA언어를 이용하여 웹을 구성하는 법을 배우는 '웹 프로그래밍',"
                         " 데이터베이스의 이해와 SQL문의 이해를 위한 '데이터베이스 시스템', '데이터베이스 프로그래밍' 을 이수 했습니다.",1);
                     case 1:return subject("위 교과목들을 최대한 활용하여 프로젝트를 진행하는 '공개 소프트웨어 프로젝트' 등의 전공 교과목을 이수했습니다.",2);
-                    default: return MyApp();
+                    case -1:return subject("교직이수 과목으로 교육심리, 학교폭력예방, 특수교육학개론, 교육학개론 등을 이수하였습니다.",-2);
+                    default:    if(widget.count<0){
+                      return  MyHomePage(imgdir:"images/babyele.JPG",desc:"유연하면서도 명확히!",index:1);
+                    }else{
+                      return  MyHomePage();
+                    }
                   }
 
                 }));
