@@ -1,0 +1,491 @@
+flutter
+fltterstudio.app    - 여기서 front 사용법
+그러나 ㅣ거는 옛날 코드를 보여주기에 참고용
+
+
+기본 문법:
+타입은 자바
+
+  List<dynamic>a=[];
+  a.add("value");
+  a.add(32);
+  var b=23;
+  a.add(b);
+  print(a[2]+a[1]);
+
+thread느낌은 Future func() async{}
+
+
+ home: MyHomePage('Flutter Demo Home Page')
+
+class myhomepage{
+var title
+MyHomePage(this.title);
+}
+
+
+아이콘 버튼 :
+ body:
+          new IconButton(
+            icon: const Icon(Icons.insert_emoticon),
+            onPressed:iconButtonPressed,
+            iconSize: 48.0,
+            color: const Color(0xFF000000),
+          ),
+    
+      );
+
+
+
+여러 버튼 들?
+children: <Widget>[
+              new Radio(key:null, groupValue: null, value: .5, onChanged: radioChanged),
+    
+              new Checkbox(key:null, onChanged: checkChanged, value:true),
+    
+              new Switch(onChanged: switchChanged, value:true),
+    
+              new Slider(key: null, onChanged: sliderChanged, value:0.35,)
+            ]
+
+
+
+
+
+
+바텀 네비게이션
+bottomNavigationBar: new BottomNavigationBar(
+          items: [
+            new BottomNavigationBarItem(
+              icon: const Icon(Icons.star),
+              title: new Text('Title'),
+            )
+          ]
+
+
+
+두번째 클래스{
+
+return Scaffold{
+
+
+        floatingActionButton: FloatingActionButton(child:Icon(Icons.delete),
+        onPressed: (){
+          print("float bt");
+
+
+화면 전환-----------------------------------------------------------------
+
+          Navigator.push(context,MaterialPageRoute(builder:(context){
+return nextpage();
+          }));
+
+
+      },),
+
+자... 여기서 밑에 colume-children을
+var a=Text("d")
+하고 a를 넣어도 ㅚㄴ다!!!
+\
+
+앱바------------------------------------------------------------------
+          appBar: AppBar(title:Text("prac_flut")
+                     leading : Icon(Icons.add),// 좌측 아이콘! // 근데 뭐하는 ㅐ인지....
+                    actions:<Widget>[IconButton(icon:Icon(Icons.add),onPressed)
+// 우측 버튼!   계속 추가 가능
+팝업----------------------------------------------------------------- 얘도 어쨌든 앱바 안에
+  actions: [
+        PopupMenuButton(
+          icon:Icon(Icons.add),
+          itemBuilder: (context){
+            return [PopupMenuItem(value:0,child:Text("?")),
+              PopupMenuItem(value:1,child:Text("2nd"))]
+            ;
+        },onSelected: (value){
+    if(value==0)print("00000");
+    else print("xxxxxx");
+    }
+        )  /// popupmenubutton
+      ],
+//   이거는 왼쪽 아이콘이 add 면서 그거 누르면 팝업 리스트 뜨는거야
+지금은 ? 라고 하나 뜨고 누르면 00000이 뜰꺼야
+
+
+]
+탭바
+ appBar: new AppBar(
+          title: new Text('App Name'),
+          bottom:
+            new TabBar(tabs: <Widget>[new Text("text"), new Text("text 2")],
+            ),
+    
+          ),
+
+
+
+
+),
+
+//                                    그냥 연습
+          body:Center(
+              child:Column(
+              children:<Widget>[
+              Text("column prac"),
+            Text("column practice"),
+                RaisedButton(child:Text("bt1"),
+                onPressed: (){print("bt1 clic");},),
+                RaisedButton(
+                child:Icon(Icons.add),
+                onPressed: (){print("bt2 clic");},)
+          ]
+          )
+          )
+}}
+
+
+
+
+
+
+
+
+
+화면 ㅓㄴ환시 데이터 보내기는 아마 클래스 생성자 사용하는듯
+위 클래스에서 생성자 만들때 {this.msg=""} 로 default지정 가능 하며
+원 클래스에서 리턴할때 A(msg:msg) 로 지정을 꼮 해야함
+ 
+
+
+
+
+
+// -----------------------------------바텀 내비!!!!  그냥 스캐폴드 안에서 밑에 넣으면 됨
+
+
+      bottomNavigationBar: BottomNavigationBar(
+  currentIndex: _index,
+        items: [
+          BottomNavigationBarItem(
+              icon:Icon(Icons.view_list),
+              title:Text('1st')
+          ),
+          BottomNavigationBarItem(
+              icon:Icon(Icons.view_list),
+              title:Text('2nd')
+          ),
+          BottomNavigationBarItem(
+              icon:Icon(Icons.view_list),
+              title:Text('3th')
+          ),
+        ],
+   onTap: (index){
+          setState(() {
+            _index=index;
+            print(_index);
+          });
+
+        },      ),
+
+온탭에 순서대로 1,2,3 전달됨!   그리고 _index는 두번째 클래스에 선언되어 ㅣㅆ는거고
+// 중요한건 currentIndex: 이게 선택된 아이콘 강조해주는거야 
+
+
+참고로 뭔가 변경한다 ! 변수나 그런거   무조건 setState내에서
+
+
+
+Column : 은 세로로 내리는거 리스트를!
+Row는 가로로 쭉 가는거!
+속성 SizeBox( width:10.0)  이거 공백 넣는 거임
+
+
+이미지 넣기
+pubspec.yml에서 assets: images/~~jpeg같은거 주석 풀어주기
+children[
+CircleAvatar(backgroundImage:AssetImage('assets/f.gif'))]   - 
+
+
+리스트 들 경계!
+Divider(height: 60.0, color:Colors.grey[850], thickness:0.5)
+height는 위아래 30씩 떨어지겠다라는 뜻
+
+
+
+
+drawer!!
+
+일단 먼저 앱바 !
+그후에 해야 버튼도 자동으로 생성됨
+drawer:Drawer(   
+          child:ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+                child:Text("header"),
+            decoration:BoxDecoration(color:Colors.yellow)
+            ),
+            ListTile(
+              title:Text("1st"),
+              onTap:(){
+                print("1st");
+            }
+            )
+            ,
+            ListTile(
+                title:Text("2nd"),
+                onTap:(){
+                  print("2nd");
+                }
+            )
+          ],
+        )
+
+
+
+
+
+리스트 ------------------------------------------------------
+ListView 에 children에 아래 Container 계속 넣는것도 방법
+
+Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.add),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [Text("hi"),SizedBox(width:10), Text("hello?")],
+                          ),
+                        )
+                      ],
+                    )),
+
+
+
+
+
+스낵바
+버튼{
+final snac=SnackBar(content:Text("Toast???")
+,action: SnackBarAction(label: "cancel",onPressed: (){          print("취소");        }
+);
+        Scaffold.of(context).showSnackBar(snac);
+}
+끝인데 scaffold는 두번 쓸수 없어
+그래서 처음 scaffold를 변경  === Builder를 추가하는 것
+return Scaffold(
+body: Builder(
+builder:(context){return RaisedButtion~~~~}))
+
+
+
+column쓸때 : ------------------------------------------------------
+children: [Text("hi"),SizedBox(width:10), Text("hello?")],      사이즈 박스
+
+
+
+
+
+
+
+edittext????
+
+
+ final _formKey=GlobalKey<FormState>();
+body:에서 폼태그!!
+Form(
+        key:_formKey,
+        child:Column(
+          children: <Widget>[
+            TextFormField(
+                validator:(value){
+                               if(value.isEmpty){
+                                          return "공백은 안되용";
+    }
+    }
+      ),
+            RaisedButton(onPressed: (){
+            if(_formKey.currentState.validate()){
+              //valid한 것임Scaffold.of(_formKey.currentContext).showSnackBar(SnackBar(content:Text("good job")));
+            }
+            },child:Text("완료"))
+          ],
+        )
+
+      )
+
+
+hintText속성 넣을수 있고
+그냥 TextField도 있고
+속성에 obscureText:true하면 pw암호로 가려지느
+keyboardType: TextInputType.multiline,
+maxLines:null 하면 줄 내려가는거 구현한거야
+
+
+
+
+
+dialog 띄우기
+버튼안에서
+showDialog(context:context,
+builder:(context){
+return AlertDialog(content:Text(nameController.text))})
+
+
+
+
+
+로그인 구현 해보자
+{
+텍스트 필드 구현했다고 치고
+TextField(
+   decoration:InputDecoration(
+     labelText:'enter!' ),
+  keyboardType:TextInputType.emailAddress,    //이메일용 자판생성
+// 비번일때는 emailAddress 대신에 그냥 text , 그리고 밑에 obscureText:true,
+
+)
+}
+자판 나올때 화면 밀어버리기 : 최상단 body: SingleChildScrollView(로 감싸기)
+
+클래스에 TextEditingController tctrl1=TextEditingController(); 선언
+클래스에 TextEditingController tctrl2=TextEditingController(); 선언
+TextFild에(
+Controller : tctrl1, 주기 )
+tctrl1.text로 입력값을 받을 수 있음
+
+자판 올라왔을때 딴 화면 터치시 자판 없애기
+GestureDetector(로 감싸기
+onTap :(){FocusScope.of(context).unfocus();}
+child:로 이어가기)
+
+
+
+
+플루터 웹???
+flutter channel beta
+ flutter upgrade
+ flutter config --enable-web
+cd <inside local copy of the flutter/flutter repo>
+ git remote get-url origin   https://github.com/flutter/flutter.git
+flutter create myapp
+ cd myapp
+ flutter run -d chrome
+이후 myapp 폴더 내에서 작업하면 되는데...
+
+
+일단 안드로이드 스튜디오내에 터미널!
+flutter.bat위치를 윈도우에서 찾아
+C:\Download\flutter\bin\flutter.bat channel master 입력
+cd 그런거 아님!!!
+그 다음 
+C:\Download\flutter\bin\flutter.bat upgrade
+C:\Download\flutter\bin\flutter.bat config --enable-web
+C:\Download\flutter\bin\flutter.bat create .     // . 중요
+C:\Download\flutter\bin\flutter.bat run -d chrome
+C:\Download\flutter\bin\flutter.bat 
+
+
+sqllite!!!!!
+ dependencies:
+       http: ^0.12.0+2
+
+
+  Memo({this.id, this.title, this.text, this.createTime, this.editTime});
+  var m=Memo(id: 1, title:"1st",text:"first",createTime:"now",editTime:"some now");
+일일이 대입해야 하는거 잊지 말고!!
+final String TableName = 'memos';// table 명입니당
+
+class DBHelper {
+  var _db;
+
+  Future<Database> get database async {
+    if ( _db != null ) return _db;
+    _db = openDatabase( join(await getDatabasesPath(), 'memos.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          "CREATE TABLE IF NOT EXISTS TABLE TABLE memos
+                (id INTEGER, title TEXT, text TEXT, createTime TEXT, editTime TEXT)",
+        );
+      },
+      version: 1,
+    );
+    return _db;
+  }
+
+  Future<void> insertMemo(Memo memo) async {
+    final db = await database;
+  
+    db.execute("insert into memos(id,title,editTime) values(?,?,?)",[memo.id,memo.title,memo.editTime]);
+  }
+
+   Future<List<Memo>> show() async {
+    final db = await database;
+
+    final List<Map<String, dynamic>> maps=await db.rawQuery("select * from memos",);
+     for(var i=0;i<maps.length;i++){
+       print("${maps[i]['id']}, ${maps[i]['title']}, ${maps[i]['text']},${maps[i]['createTime']},${maps[i]['editTime']}");
+     }
+  }
+
+  Future<void> updateMemo(Memo memo) async {
+    final db = await database;
+    await db.execute(
+      "update memos set id=? where id=?",[3,1],
+    );
+  }
+
+  Future<void> deleteMemo(int id) async {
+    final db = await database;
+
+    await db.execute(
+      "delete from memos where id=?",[3]
+    );
+  }
+}
+
+
+
+
+
+
+
+
+http통신
+ dependencies:
+       http: ^0.12.0+2
+
+ String url="http://192.168.56.1:8052/web/andtest.json";
+    var res=await http.get(url);
+    var a=json.decode(res.body);
+    print(a.toString());
+   print(a.length);
+   print("d${a["Bid"]}");// 배열로 받는 듯 하네
+     return a;
+
+
+   /*String url="http://192.168.56.1:8052/web/androidtest.json";
+   var res=await http.get(url);
+   var a=jsonDecode(res.body.toString());
+   var b=a["sendData"];
+   print(b);
+   var c=b.length;
+   print("길이는 ${c}");
+   for(var i=0;i<c;i+=1){
+     print("${b[i]["f"]}, ${b[i]["l"]}");
+   }
+   return a;*/   // 리스트로 뽑아오기
+
+
+
+    /*
+    String url="http://192.168.56.1:8052/web/androidtest.json";
+   await http.post(url,body:{"id":"flutter","pw":"플루토"});
+*/// 데이터 보내기 성공
+
+
+
+
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:profileflutter/cuper_prac.dart';
 import 'package:profileflutter/personality.dart';
 import 'package:profileflutter/skill.dart';
 import 'package:profileflutter/subject.dart';
@@ -35,11 +36,13 @@ class MyHomePage extends StatefulWidget {
   String desc;
   String imgdir;
   int index;
+  int isi=0;
 
   MyHomePage(
       {this.desc = "명확하면서 유연하게!",
       this.imgdir = "images/lsd.png",
-      this.index = 0});
+      this.index = 0,
+      this.isi=0});
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -48,11 +51,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    if(widget.isi==1){return cuper_prac();}
     return Scaffold(
       backgroundColor: Color(0xFF9cf4ac),
       appBar: AppBar(
         title: Text("staris' first flutter app"),
       ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: "btn1",
+        child: Icon(Icons.add),
+        onPressed: (){
+        print("floating!");
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return cuper_prac();
+        }));
+      },),
       drawer: f(context, widget.index),
       body: Center(
         child: Column(
@@ -92,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
             default:
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return MyHomePage(
-                    imgdir: "images/babyele.JPG",
+                    imgdir: "images/hak.jpg",
                     desc: "유연하면서도 명확히!",
                     index: 1);
               }));

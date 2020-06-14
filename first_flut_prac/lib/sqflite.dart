@@ -23,21 +23,25 @@ class _sqfliteState extends State<sqflite> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child:Column(children: [
-        RaisedButton(child: Text("insert"),onPressed: (){
-          db.insertMemo(m);
-        },),
-        RaisedButton(child:Text("delete"),onPressed: (){
-          db.deleteMemo(1);
-        },),
-        RaisedButton(child:Text("select"),onPressed: (){
-          db.show();
-        },),
-        RaisedButton(child:Text("update"),onPressed: (){
-          db.updateMemo(m2);
-        },)
-      ],)
+    return Scaffold(
+      body:Center(
+
+        child: Column(mainAxisAlignment:MainAxisAlignment.center,
+          children: [
+          RaisedButton(child: Text("insert"),onPressed: (){
+            db.insertMemo(m);
+          },),
+          RaisedButton(child:Text("delete"),onPressed: (){
+            db.deleteMemo(1);
+          },),
+          RaisedButton(child:Text("select"),onPressed: (){
+            db.show();
+          },),
+          RaisedButton(child:Text("update"),onPressed: (){
+            db.updateMemo(m2);
+          },)
+        ],),
+      )
 
 
 
