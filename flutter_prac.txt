@@ -88,9 +88,36 @@ var a=Text("d")
 하고 a를 넣어도 ㅚㄴ다!!!
 \
 
+
+웹뷰 ---------------------------------------------------
+pubspec.yaml에추가
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter:
+
+
+android->app>srec>main>androidManifest에추가
+   android:usesCleartextTraffic="true"  // <application안에!!!>
+
+
+
+    return Scaffold(
+        body: WebView(
+        initialUrl: 'http://192.168.56.1:8052/web/index',
+        javascriptMode: JavascriptMode.unrestricted,
+        onPageFinished: (String url) {
+      print('finished:' + url);
+        },
+        )
+    );
+
+
+
 앱바------------------------------------------------------------------
           appBar: AppBar(title:Text("prac_flut")
-                     leading : Icon(Icons.add),// 좌측 아이콘! // 근데 뭐하는 ㅐ인지....
+                     leading : Icon(Icons.add),// 좌측 아이콘! // drawer에 사용하는 ㅏ이콘
+
                     actions:<Widget>[IconButton(icon:Icon(Icons.add),onPressed)
 // 우측 버튼!   계속 추가 가능
 팝업----------------------------------------------------------------- 얘도 어쨌든 앱바 안에
@@ -196,8 +223,14 @@ var a=Text("d")
 
 Column : 은 세로로 내리는거 리스트를!
 Row는 가로로 쭉 가는거!
+mainAxisAlignment: MainAxisAlignment.spaceEvenly  이거는 규칙적인 띄어주기
+
 속성 SizeBox( width:10.0)  이거 공백 넣는 거임
 
+Container(-----------------------------------------------------------------
+padding  : EdgeInsets,all(20),  요거 많이 쓰임 
+decoration:BoxDecoration{color:Colors.red,}
+)
 
 이미지 넣기
 pubspec.yml에서 assets: images/~~jpeg같은거 주석 풀어주기
@@ -211,6 +244,12 @@ height는 위아래 30씩 떨어지겠다라는 뜻
 
 
 
+
+
+
+
+
+리스트 ------------------------------------------------------
 
 drawer!!
 
@@ -239,12 +278,6 @@ drawer:Drawer(
             )
           ],
         )
-
-
-
-
-
-리스트 ------------------------------------------------------
 ListView 에 children에 아래 Container 계속 넣는것도 방법
 
 Container(
@@ -261,6 +294,27 @@ Container(
                         )
                       ],
                     )),
+
+
+
+실제로는 List사용
+List <String> a =[];
+a.add('s')~~~~
+return Column(
+ children: List.generate(a.length,(i){ return Text(a[i])   })
+)
+
+
+drawer가 아니면
+ListView.builder(
+   itemCount: a.length,
+   itemBuilder:(context,index){
+      return ListTile(
+         title: Text('${a[index]}'),
+         subtitle:Text('dddd')   );
+
+   }
+)
 
 
 
@@ -487,5 +541,24 @@ http통신
 
 
 
+firebase!!!!!
+import 'package:google_sign_in/google_sign_in.dart'; // added
+import 'package:firebase_auth/firebase_auth.dart'; // added
 
+pub : 
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter:
+  firebase_auth:
+  google_sign_in:
+
+
+
+파이어 베이스
+sha키 받는 법은 
+keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+
+근데 androiddebugkey는 아마 내가 정하는거 같구
+pw는 android래~
 
