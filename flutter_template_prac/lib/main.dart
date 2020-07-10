@@ -4,7 +4,9 @@ import 'package:fluttertemplateprac/webView.dart';
 import 'package:fluttertemplateprac/webView2.dart';
 import 'package:google_sign_in/google_sign_in.dart'; // added
 import 'package:firebase_auth/firebase_auth.dart'; // added
-import 'NewMain.dart';
+import 'firebasetest.dart';
+import 'login_form.dart';
+import 'main2.dart';
 
 void main() {
   runApp(MyApp());
@@ -54,13 +56,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
     },),
-        RaisedButton(child:Text("new main"),onPressed: (){
+        RaisedButton(child:Text("firebase test"),onPressed: (){
           Navigator.push(context,MaterialPageRoute(builder:(context){
-            return main2();
+            return fire();
           }));
 
 
         },),
+        RaisedButton(child: Text("main2_bottom/drawer"),onPressed: (){
+          Navigator.push(context,MaterialPageRoute(builder:(context){
+            return main2();
+          }));
+
+        },),
+        RaisedButton(child: Text("login_form"),onPressed: (){
+          Navigator.push(context,MaterialPageRoute(builder:(context){
+            return login_form();
+          }));
+
+        },)
       ],
       )
     );

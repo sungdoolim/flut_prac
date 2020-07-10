@@ -6,31 +6,110 @@ class login_form extends StatefulWidget {
 }
 
 class _login_formState extends State<login_form> {
-  TextEditingController ctrl;
-  TextEditingController ctrl2;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("every Dongguk"),),
-      body:Column(
-        children: [
-          TextField(
-            controller: ctrl,
-            decoration: InputDecoration(labelText: 'id'),
-          ),
-          TextField(
-            controller: ctrl2,
-            decoration:InputDecoration(labelText: 'pw'),
-            obscureText: true,
-          ),
-          RaisedButton(child: Text("submit"),onPressed: (){
-              String id=ctrl.text;
-              String pw=ctrl2.text;
 
-          },)
-        ],
-      )
+        appBar: AppBar(
+          title: Text('template'),
+        ),
 
+        body:  Stack(
+              children: [
+            Center(
+            child: new Image.asset(
+              'images/city.jpg',
+              width: size.width,
+              height: size.height,
+              fit: BoxFit.fill,
+            ),
+        ),
+                ListView(
+                children: <Widget>[
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'Template',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 30),
+                      )),
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'Sign in',
+                        style: TextStyle(fontSize: 20),
+                      )),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'User Name',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: TextField(
+                      obscureText: true,
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                      ),
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: (){
+                      //forgot password screen
+                      print("forgot");
+                    },
+                    textColor: Colors.blue,
+                    child: Text('Forgot Password'),
+                  ),
+                  Container(
+                      height: 50,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: RaisedButton(
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        child: Text('Login'),
+                        onPressed: () {
+                          print("id : ${nameController.text}");
+                          print("pw : ${passwordController.text}");
+                        },
+                      )),
+                  Container(
+                      child: Row(
+                        children: <Widget>[
+                          Text('Does not have account?'),
+                          FlatButton(
+                            textColor: Colors.blue,
+                            child: Text(
+                              'Sign in',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            onPressed: () {
+                              print("need register form");
+                              //signup screen
+                            },
+                          )
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                      ))
+                ],
+              ),],
+            )
     );
   }
 }
