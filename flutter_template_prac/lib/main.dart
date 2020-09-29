@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplateprac/webView.dart';
 import 'package:fluttertemplateprac/webView2.dart';
-import 'package:google_sign_in/google_sign_in.dart'; // added
 import 'package:firebase_auth/firebase_auth.dart'; // added
 import 'firebasetest.dart';
 import 'login_form.dart';
@@ -14,7 +13,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
